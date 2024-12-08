@@ -7,23 +7,13 @@
       <section class="tooltip-part">
         <div class="dice">
           <header class="part-header flexrow">
-            <span class="part-formula"
-              >{{ roll.total }} + {{ modif }} + {{ modifier }} &ge;
-              {{ difficulty }}
+            <span class="part-formula">{{ formula }} </span>
+            <span class="part-total"
+              ><i class="fa-solid fa-{{ icon }}"></i>
             </span>
-
-            <span class="part-total">{{ carac.name }} </span>
           </header>
-          <h4
-            class="dice-total
-          {{#if success}}
-          success
-          {{else}}
-          failure
-          {{/if}}
-          "
-          >
-            {{ result }}
+          <h4 class="dice-total">
+            {{ roll.total }}
           </h4>
           {{> (partial moduleId "diceDetails") roll=roll }}
         </div>

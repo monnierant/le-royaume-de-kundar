@@ -1,0 +1,14 @@
+<div class="faces-roll-details">
+  {{#each roll.dice as |dice|}}
+  {{#each dice.results as |result|}}
+  <div class="result-dice">
+    <i class="result-dice-icon monni-icon-d{{ dice.faces }}"></i>
+    <div class="result-dice-value">
+      <div>
+        {{ result.result }}
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{/each}}
+</div>

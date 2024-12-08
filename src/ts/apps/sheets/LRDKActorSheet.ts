@@ -29,7 +29,7 @@ export default class LRDKItemSheet extends ActorSheet {
   override activateListeners(html: JQuery) {
     super.activateListeners(html);
     // Roll handlers, click handlers, etc. would go here.
-    html.find(".lrdk-talent-roll").on("click", this._onRollDice.bind(this));
+    html.find(".lrdk-roll").on("click", this._onRollDice.bind(this));
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
@@ -38,26 +38,32 @@ export default class LRDKItemSheet extends ActorSheet {
       .find(".lrdk-health-update")
       .on("click", this._onUpdateHealth.bind(this));
 
-    if (this.actor.system.type === "character") {
-      this.activateListenersPC(html);
-    }
-  }
-
-  private activateListenersPC(html: JQuery) {
-    console.log("activateListenersPC", html);
+    html.find(".lrdk-roll-damage").on("click", this._onRollDamage.bind(this));
   }
 
   // Event Handlers
   private async _onRollDice(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const talentId = event.currentTarget.dataset.talent;
-    await (this.actor as LRDKActor).rollDialog(talentId);
+    const caracId = event.currentTarget.dataset.carac;
+    await (this.actor as LRDKActor).rollDialog(caracId);
+  }
+
+  private async _onRollDamage(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const formula = event.currentTarget.dataset.formula;
+    const icon = event.currentTarget.dataset.icon;
+    await (this.actor as LRDKActor).rollDamage(formula, icon);
   }
 
   private async _onUpdateHealth(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const value = parseInt(event.currentTarget.dataset.value) ?? 0;
-    await (this.actor as LRDKActor).updateHealth(value);
+    const parent = event.currentTarget.parentElement;
+    const input = parent.querySelector(
+      "input[name='health']"
+    ) as HTMLInputElement;
+    const mult = parseInt(event.currentTarget.dataset.mult) ?? 0;
+    const health = parseInt(input.value) ?? 0;
+    await (this.actor as LRDKActor).updateHealth(mult * health);
     this.render();
   }
 }

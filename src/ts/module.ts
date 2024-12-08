@@ -12,7 +12,6 @@ import { partial } from "./handlebarsHelpers/partial";
 import { add } from "./handlebarsHelpers/add";
 import { lrdkActorSchema } from "./apps/schemas/LRDKActorSchema";
 import LRDKActorDataModel from "./apps/datamodels/LRDKActorDataModel";
-import MyNpcRoleActorDataModel from "./apps/datamodels/LRDKNpcActorDataModel";
 import LRDKActor from "./apps/documents/LRDKActor";
 import { valueToModif } from "./handlebarsHelpers/valueToModif";
 
@@ -26,6 +25,7 @@ async function preloadTemplates(): Promise<any> {
   const templatePaths = [
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
     `systems/${moduleId}/templates/partials/actor/hpmpbar.hbs`,
+    `systems/${moduleId}/templates/partials/diceDetails.hbs`,
   ];
 
   return loadTemplates(templatePaths);
@@ -48,7 +48,6 @@ Hooks.once("init", () => {
   });
 
   CONFIG.Actor.dataModels.character = LRDKActorDataModel;
-  CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
   CONFIG.Actor.documentClass = LRDKActor;
 
   Actors.unregisterSheet("core", ActorSheet);

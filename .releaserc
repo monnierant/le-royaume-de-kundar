@@ -10,7 +10,7 @@
       "prerelease": true
     }
   ],
-  "repositoryUrl": "https://github.com/monnierant/lrdk",
+  "repositoryUrl": "https://github.com/monnierant/le-royaume-de-kundar",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/github"

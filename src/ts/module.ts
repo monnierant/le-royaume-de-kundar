@@ -2,34 +2,30 @@
 // code and not include them in the build output.
 import "../styles/style.scss";
 
-import MySystActorSheet from "./apps/sheets/MySystActorSheet";
+import LRDKActorSheet from "./apps/sheets/LRDKActorSheet";
 
 import { moduleId } from "./constants";
 import { range } from "./handlebarsHelpers/range";
 import { concat } from "./handlebarsHelpers/concat";
 import { ternary } from "./handlebarsHelpers/ternary";
 import { partial } from "./handlebarsHelpers/partial";
-import { mySystActorSchema } from "./apps/schemas/MySystActorSchema";
-import MySystActorDataModel from "./apps/datamodels/MySystActorDataModel";
-import MyNpcRoleActorDataModel from "./apps/datamodels/MySystNpcActorDataModel";
-import MySystActor from "./apps/documents/MySystActor";
+import { add } from "./handlebarsHelpers/add";
+import { lrdkActorSchema } from "./apps/schemas/LRDKActorSchema";
+import LRDKActorDataModel from "./apps/datamodels/LRDKActorDataModel";
+import MyNpcRoleActorDataModel from "./apps/datamodels/LRDKNpcActorDataModel";
+import LRDKActor from "./apps/documents/LRDKActor";
+import { valueToModif } from "./handlebarsHelpers/valueToModif";
 
 declare global {
   interface DocumentClassConfig {
-    Actor: MySystActor;
+    Actor: LRDKActor;
   }
-
-  // interface DataModelConfig {
-  //   Actor: {
-  //     someActorSubtype: SomeActorSubtypeDataModel;
-  //     anotherActorSubtype: AnotherActorSubtypeDataModel;
-  //   };
-  // }
 }
 
 async function preloadTemplates(): Promise<any> {
   const templatePaths = [
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
+    `systems/${moduleId}/templates/partials/actor/hpmpbar.hbs`,
   ];
 
   return loadTemplates(templatePaths);
@@ -38,23 +34,25 @@ async function preloadTemplates(): Promise<any> {
 Hooks.once("init", () => {
   console.log(`Initializing ${moduleId}`);
 
-  console.log("mySystActorSchema", mySystActorSchema);
+  console.log("lrdkActorSchema", lrdkActorSchema);
 
   Handlebars.registerHelper("partial", partial);
   Handlebars.registerHelper("range", range);
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
+  Handlebars.registerHelper("add", add);
+  Handlebars.registerHelper("valueToModif", valueToModif);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;
   });
 
-  CONFIG.Actor.dataModels.character = MySystActorDataModel;
+  CONFIG.Actor.dataModels.character = LRDKActorDataModel;
   CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
-  CONFIG.Actor.documentClass = MySystActor;
+  CONFIG.Actor.documentClass = LRDKActor;
 
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet(moduleId, MySystActorSheet, { makeDefault: true });
+  Actors.registerSheet(moduleId, LRDKActorSheet, { makeDefault: true });
 
   preloadTemplates();
 });

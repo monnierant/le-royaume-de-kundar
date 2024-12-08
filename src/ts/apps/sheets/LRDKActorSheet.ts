@@ -1,10 +1,10 @@
 import { moduleId, difficultyLevels } from "../../constants";
-import MySystActor from "../documents/MySystActor";
+import LRDKActor from "../documents/LRDKActor";
 import { StatHelpers } from "../helpers/StatHelpers";
 
-export default class MySystItemSheet extends ActorSheet {
+export default class LRDKItemSheet extends ActorSheet {
   constructor(object: any, options = {}) {
-    super(object, { ...options, width: 610, height: 750 });
+    super(object, { ...options, width: 500, height: 750 });
     console.log("this.actor.type", this.actor.type);
   }
 
@@ -20,7 +20,7 @@ export default class MySystItemSheet extends ActorSheet {
 
     data.difficultyLevels = difficultyLevels;
     if (this.actor.system.type === "character") {
-      data.health = StatHelpers.calculateActorHealth(this.actor as MySystActor);
+      data.health = StatHelpers.calculateActorHealth(this.actor as LRDKActor);
     }
     return data;
   }
@@ -29,13 +29,13 @@ export default class MySystItemSheet extends ActorSheet {
   override activateListeners(html: JQuery) {
     super.activateListeners(html);
     // Roll handlers, click handlers, etc. would go here.
-    html.find(".mysyst-talent-roll").on("click", this._onRollDice.bind(this));
+    html.find(".lrdk-talent-roll").on("click", this._onRollDice.bind(this));
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
     html
-      .find(".mysyst-health-update")
+      .find(".lrdk-health-update")
       .on("click", this._onUpdateHealth.bind(this));
 
     if (this.actor.system.type === "character") {
@@ -44,27 +44,20 @@ export default class MySystItemSheet extends ActorSheet {
   }
 
   private activateListenersPC(html: JQuery) {
-    html.find(".mysyst-mana-update").on("click", this._onUpdateMana.bind(this));
+    console.log("activateListenersPC", html);
   }
 
   // Event Handlers
   private async _onRollDice(event: JQuery.ClickEvent) {
     event.preventDefault();
     const talentId = event.currentTarget.dataset.talent;
-    await (this.actor as MySystActor).rollDialog(talentId);
+    await (this.actor as LRDKActor).rollDialog(talentId);
   }
 
   private async _onUpdateHealth(event: JQuery.ClickEvent) {
     event.preventDefault();
     const value = parseInt(event.currentTarget.dataset.value) ?? 0;
-    await (this.actor as MySystActor).updateHealth(value);
-    this.render();
-  }
-
-  private async _onUpdateMana(event: JQuery.ClickEvent) {
-    event.preventDefault();
-    const value = parseInt(event.currentTarget.dataset.value) ?? 0;
-    await (this.actor as MySystActor).updateMana(value);
+    await (this.actor as LRDKActor).updateHealth(value);
     this.render();
   }
 }

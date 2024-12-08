@@ -1,5 +1,5 @@
 {
-  "MYSYST": {
+  "LRDK": {
     "Global": {
       "difficulty": "Difficulté"
     },
@@ -13,10 +13,23 @@
       }
     },
     "Actor": {
+      "Caracs": {
+        "FOR": "Force",
+        "CNS": "Const",
+        "DEX": "Dext",
+        "INT": "Int",
+        "PER": "Per",
+        "CHA": "Cha"
+      },
+      "age": "Âge",
+      "theme": "Thème",
+      "inventory": "Inventaire",
       "mana": "Mana",
       "health": "Santé",
       "note": "Note",
       "talents": "Talents",
+      "damagePhysical": "Dégâts Physiques",
+      "damageMagical": "Dégâts Magiques",
       "name": "Nom"
     }
   }

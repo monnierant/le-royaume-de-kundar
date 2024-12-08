@@ -9,15 +9,15 @@
   display: none;
 }
 
-.mysyst-vital-modificator {
+.lrdk-vital-modificator {
   width: 2.5rem !important;
 }
 
-.mysyst-separator {
+.lrdk-separator {
   width: 0.5rem;
 }
 
-.mysyst-health-update {
+.lrdk-health-update {
   margin: 0 0.1rem;
 }
 
@@ -34,13 +34,24 @@
     }
   }
 
-  .sheet-header .mysyst-header-section {
+  .sheet-header .lrdk-header-section {
     @include flex;
     flex-direction: row;
     width: 100%;
   }
 
-  .mysyst-talents {
+  .lrdk-health-section {
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    align-items: flex-start;
+
+    input[name="system.age"] {
+      width: 3rem;
+    }
+  }
+
+  .lrdk-talents,
+  .lrdk-caracs {
     @include flex;
     flex-direction: row;
     width: 100%;
@@ -51,13 +62,41 @@
     background-color: #f0f0f0;
   }
 
-  .mysyst-talent {
+  .lrdk-talent {
     @include flex;
     flex-direction: column;
     gap: 0.1em;
 
     input {
       text-align: center;
+    }
+  }
+
+  .lrdk-caracs {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .lrdk-carac {
+    @include flex;
+    flex-direction: row;
+    gap: 0.1em;
+
+    input {
+      text-align: center;
+      width: 2.5rem;
+    }
+  }
+
+  .lrdk-damage {
+    @include flex;
+    flex-direction: row;
+    gap: 0.1em;
+
+    input {
+      text-align: center;
+      width: 100%;
+      margin: 0.5rem;
     }
   }
 }

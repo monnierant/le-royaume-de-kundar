@@ -5,11 +5,14 @@ export const defaultLenght = {
 };
 
 export const difficultyLevels = [
-  { value: 0, label: "easy" },
-  { value: -10, label: "medium" },
-  { value: -20, label: "hard" },
-  { value: -30, label: "veryhard" },
-  { value: -40, label: "impossible" },
+  { value: 7, label: "easy" },
+  { value: 10, label: "normal" },
+  { value: 13, label: "complex" },
+  { value: 15, label: "hard" },
+  { value: 17, label: "veryhard" },
+  { value: 20, label: "impossible" },
 ];
 
 export const moduleId: string = id;
+
+export const caracList = ["FOR", "CNS", "DEX", "INT", "PER", "CHA"];

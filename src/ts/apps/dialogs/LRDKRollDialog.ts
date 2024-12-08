@@ -1,12 +1,12 @@
 import { difficultyLevels, moduleId } from "../../constants";
-import MySystActor from "../documents/MySystActor";
+import LRDKActor from "../documents/LRDKActor";
 
-export default class MySystActorRollDialog extends Dialog {
+export default class LRDKActorRollDialog extends Dialog {
   // ========================================
   // Constructor
   // ========================================
   constructor(
-    actor: MySystActor,
+    actor: LRDKActor,
     talentId: number,
     options: any = {},
     data: any = {}
@@ -44,7 +44,7 @@ export default class MySystActorRollDialog extends Dialog {
   // ========================================
   // Properties
   // ========================================
-  public actor: MySystActor;
+  public actor: LRDKActor;
   public talentId: number;
   // public roll: CowboyBebopRoll | undefined;
 
@@ -69,12 +69,12 @@ export default class MySystActorRollDialog extends Dialog {
   private async _onRoll(html: JQuery) {
     // Roll the dice
     let difficulty =
-      parseInt(
-        html.find("#mysyst-dialog-modifier-difficulty").val() as string
-      ) ?? 0;
-    await this.actor.rollTalent(
-      this.talentId,
-      isNaN(difficulty) ? 0 : difficulty
-    );
+      parseInt(html.find("#lrdk-dialog-modifier-difficulty").val() as string) ??
+      0;
+    console.log("Rolling", difficulty);
+    // await this.actor.rollTalent(
+    //   this.talentId,
+    //   isNaN(difficulty) ? 0 : difficulty
+    // );
   }
 }

@@ -47,8 +47,8 @@
           ></a>
           <div class="lrdk-separator"></div>
           <input
-            class="lrdk-vital-max"
-            name="system.health.max"
+            class="lrdk-vital-modifier"
+            name="system.health.modifier"
             type="number"
             value="{{ actor.system.health.modifier }}"
           />
@@ -66,11 +66,22 @@
           placeholder="{{localize 'LRDK.Actor.age'}}"
         />
       </div>
+      <div>
+        <label for="system.armor">
+          {{ localize 'LRDK.Actor.armor' }}
+        </label>
+        <input
+          type="number"
+          name="system.armor"
+          value="{{ actor.system.armor }}"
+          placeholder="{{localize 'LRDK.Actor.armor'}}"
+        />
+      </div>
     </div>
-    <div class="lrdk-header-section">
+    <div class="lrdk-header-section lrdk-inv-section">
       <input
         type="text"
-        name="name"
+        name="system.inventory"
         value="{{ actor.system.inventory }}"
         placeholder="{{localize 'LRDK.Actor.inventory'}}"
       />
@@ -80,12 +91,13 @@
         <a
           class="lrdk-roll-damage"
           data-formula="{{ actor.system.damagePhysical }}"
+          data-icon="explosion"
         >
           <i class="fa-solid fa-explosion"></i>
         </a>
         <input
           type="text"
-          name="name"
+          name="system.damagePhysical"
           value="{{ actor.system.damagePhysical }}"
           placeholder="{{localize 'LRDK.Actor.damagePhysical'}}"
         />
@@ -93,13 +105,14 @@
       <div class="lrdk-damage">
         <input
           type="text"
-          name="name"
+          name="system.damageMagical"
           value="{{ actor.system.damageMagical }}"
           placeholder="{{localize 'LRDK.Actor.damageMagical'}}"
         />
         <a
           class="lrdk-roll-damage"
           data-formula="{{ actor.system.damageMagical }}"
+          data-icon="wand-sparkles"
         >
           <i class="fa-solid fa-wand-sparkles"></i>
         </a>

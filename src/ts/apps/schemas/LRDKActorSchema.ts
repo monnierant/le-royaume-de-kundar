@@ -19,6 +19,8 @@ export interface LRDKActorSystem {
   inventory: string;
   age: number;
   theme: string;
+  armor: number;
+  notes: string;
 }
 
 export const lrdkActorSchema = {
@@ -47,6 +49,8 @@ export const lrdkActorSchema = {
   inventory: new fields.StringField({ initial: "" }),
   age: new fields.NumberField({ initial: 0 }),
   theme: new fields.StringField({ initial: "" }),
+  armor: new fields.NumberField({ initial: 0 }),
+  notes: new fields.StringField({ initial: "" }),
 };
 
 export type LRDKActorSchema = typeof lrdkActorSchema;

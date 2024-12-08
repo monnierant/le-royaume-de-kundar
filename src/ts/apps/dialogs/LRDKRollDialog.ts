@@ -1,5 +1,6 @@
 import { difficultyLevels, moduleId } from "../../constants";
 import LRDKActor from "../documents/LRDKActor";
+import { StatHelpers } from "../helpers/StatHelpers";
 
 export default class LRDKActorRollDialog extends Dialog {
   // ========================================
@@ -7,7 +8,7 @@ export default class LRDKActorRollDialog extends Dialog {
   // ========================================
   constructor(
     actor: LRDKActor,
-    talentId: number,
+    caracId: number,
     options: any = {},
     data: any = {}
   ) {
@@ -38,14 +39,14 @@ export default class LRDKActorRollDialog extends Dialog {
 
     // Set the actor
     this.actor = actor;
-    this.talentId = talentId;
+    this.caracId = caracId;
   }
 
   // ========================================
   // Properties
   // ========================================
   public actor: LRDKActor;
-  public talentId: number;
+  public caracId: number;
   // public roll: CowboyBebopRoll | undefined;
 
   // Define the template to use for this sheet
@@ -57,7 +58,8 @@ export default class LRDKActorRollDialog extends Dialog {
   override getData() {
     let data: any = super.getData();
     data.actor = this.actor;
-    data.talent = this.actor.getTalent(this.talentId);
+    data.carac = this.actor.getCarac(this.caracId);
+    data.caracModifier = StatHelpers.valueToModifier(data.carac.value);
     data.difficultyLevels = difficultyLevels;
     return data;
   }
@@ -68,13 +70,16 @@ export default class LRDKActorRollDialog extends Dialog {
   // Roll the dice
   private async _onRoll(html: JQuery) {
     // Roll the dice
-    let difficulty =
+    const difficulty =
       parseInt(html.find("#lrdk-dialog-modifier-difficulty").val() as string) ??
       0;
-    console.log("Rolling", difficulty);
-    // await this.actor.rollTalent(
-    //   this.talentId,
-    //   isNaN(difficulty) ? 0 : difficulty
-    // );
+    const modifier =
+      parseInt(html.find("#lrdk-dialog-modifier-value").val() as string) ?? 0;
+
+    await this.actor.rollCarac(
+      this.caracId,
+      isNaN(difficulty) ? 0 : difficulty,
+      isNaN(modifier) ? 0 : modifier
+    );
   }
 }

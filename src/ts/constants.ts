@@ -1,7 +1,7 @@
 import { id } from "../system.json";
 
 export const defaultLenght = {
-  talent: 5,
+  talent: 6,
 };
 
 export const difficultyLevels = [

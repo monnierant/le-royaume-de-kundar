@@ -1,15 +1,17 @@
 {
   "LRDK": {
     "Global": {
-      "difficulty": "Difficulté"
+      "difficulty": "Difficulté",
+      "Modif": "Modificateur"
     },
     "Dialog": {
       "difficulty": {
         "easy": "Facile",
-        "medium": "Moyen",
+        "normal": "Normal",
+        "complex": "Compliqué",
         "hard": "Difficile",
         "veryhard": "Très Difficile",
-        "impossible": "Impossible"
+        "impossible": "Bon Courage"
       }
     },
     "Actor": {
@@ -22,6 +24,7 @@
         "CHA": "Cha"
       },
       "age": "Âge",
+      "armor": "Armure",
       "theme": "Thème",
       "inventory": "Inventaire",
       "mana": "Mana",

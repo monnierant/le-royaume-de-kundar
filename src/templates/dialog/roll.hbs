@@ -1,6 +1,21 @@
 <div class="lrdk-dialog-content">
-  <h2>{{ talent.name }} ({{ talent.value }})</h2>
+  <h2>
+    {{ carac.name }} ({{ carac.value }} + {{ caracModifier }} =
+    {{ add carac.value caracModifier }})
+  </h2>
   <section class="lrdk-dialog-modifiers">
+    <div class="lrdk-dialog-modifier">
+      <label
+        for="lrdk-dialog-modifier-value"
+        >{{ localize 'LRDK.Global.Modif' }}</label
+      >
+      <input
+        type="number"
+        id="lrdk-dialog-modifier-value"
+        name="value"
+        value="0"
+      />
+    </div>
     <div class="lrdk-dialog-modifier">
       <label
         for="lrdk-dialog-modifier-difficulty"

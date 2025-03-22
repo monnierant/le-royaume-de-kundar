@@ -2,7 +2,7 @@
 
 This is a french home made ttrpg System made by @nomisenicar
 
-There is an english translation included
+There is an english translation included.
 
 ## Usage
 

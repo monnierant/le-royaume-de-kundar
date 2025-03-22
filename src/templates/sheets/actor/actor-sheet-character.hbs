@@ -1,7 +1,7 @@
 {{log actor}}
 
 <form class="actor-sheet {{ cssClass }}" autocomplete="off">
-  {{> (partial moduleId "actor/header") moduleId=moduleId actor=actor}}
+  {{~> (partial moduleId "actor/header") moduleId=moduleId actor=actor}}
   <section class="lrdk-caracs">
     {{#each actor.system.caracs as |carac|}}
     <div class="lrdk-carac">

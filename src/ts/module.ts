@@ -14,10 +14,18 @@ import { lrdkActorSchema } from "./apps/schemas/LRDKActorSchema";
 import LRDKActorDataModel from "./apps/datamodels/LRDKActorDataModel";
 import LRDKActor from "./apps/documents/LRDKActor";
 import { valueToModif } from "./handlebarsHelpers/valueToModif";
+import LRDKNpcActorDataModel from "./apps/datamodels/LRDKNpcActorDataModel";
 
 declare global {
   interface DocumentClassConfig {
-    Actor: LRDKActor;
+    Actor: typeof LRDKActor;
+  }
+
+    interface DataModelConfig {
+    Actor: {
+      character: typeof LRDKActorDataModel;
+      firstrole: typeof LRDKNpcActorDataModel;
+    };
   }
 }
 

@@ -1,9 +1,9 @@
-@import "./clean.scss";
+@use "clean.scss";
 
-@import "./Document/actor.scss";
+@use "Document/actor.scss";
 
-@import "./Interfaces/roll.scss";
-@import "./Interfaces/dialog.scss";
-@import "./Interfaces/hpmpbar.scss";
+@use "Interfaces/roll.scss";
+@use "Interfaces/dialog.scss";
+@use "Interfaces/hpmpbar.scss";
 
-@import "./Fonts/Glyphter.scss";
+@use "Fonts/Glyphter.scss";

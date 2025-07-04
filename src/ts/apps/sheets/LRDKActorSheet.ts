@@ -10,7 +10,7 @@ export default class LRDKItemSheet extends ActorSheet {
 
   // Define the template to use for this sheet
   override get template() {
-    return `systems/${moduleId}/templates/sheets/actor/actor-sheet-${this.actor.system.type}.hbs`;
+    return `systems/${moduleId}/templates/sheets/actor/actor-sheet-${this.actor.type}.hbs`;
   }
 
   // Data to be passed to the template when rendering
@@ -19,7 +19,7 @@ export default class LRDKItemSheet extends ActorSheet {
     data.moduleId = moduleId;
 
     data.difficultyLevels = difficultyLevels;
-    if (this.actor.system.type === "character") {
+    if (this.actor.type === "character") {
       data.health = StatHelpers.calculateActorHealth(this.actor as LRDKActor);
     }
     return data;
